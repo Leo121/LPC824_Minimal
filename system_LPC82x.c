@@ -96,9 +96,9 @@ Clock speed table (in Mhz):
 
 |      |      ||  DIV
 | MSEL | PSEL ||   1  |   2  |   3  |   4  |   5  |   6  |
----------------------------------------------------------
+----------------------------------------------------------
 |  7   |   0  ||X 96  |X 48  |X 32  |X 24  |X 19.2|X 16  |
-|  6   |   1  ||X 84  |  42  |  28  |  21  |  16.8|  14  |
+|  6   |   1  ||X 84  |* 42  |* 28  |* 21  |* 16.8|* 14  |
 |  5   |   1  ||* 72  |  36  |  24  |  18  |  14.4|  12  |
 |  4   |   1  ||  60  |  30  |  20  |  15  |  12  |  10  |
 |  3   |   1  ||  48  |  24  |  16  |  12  |   9.6|   8  |
@@ -120,7 +120,7 @@ X --> Does NOT work
 #define WDTOSCCTRL_Val        0x00000000              // Reset: 0x000
 #define SYSPLLCTRL_Val        (((PSEL)<<5)|(MSEL))    // Reset: 0x000
 #define SYSPLLCLKSEL_Val      0x00000000              // Reset: 0x000
-#define MAINCLKSEL_Val        0x00000000              // Reset: 0x000
+#define MAINCLKSEL_Val        0x00000003              // Reset: 0x000
 #define SYSAHBCLKDIV_Val      (DIV)                   // Reset: 0x001
 
 /*

@@ -8,9 +8,10 @@ TRGT = arm-none-eabi-
 CC = $(TRGT)gcc
 CXX = $(TRGT)g++
 CP = $(TRGT)objcopy
+DUMP = $(TRGT)objdump
 
 # compiler and linker settings
-CFLAGS = -mcpu=cortex-m0plus -mthumb -I../minimal -Os -ggdb
+CFLAGS = -mcpu=cortex-m0plus -mthumb -I./ -Os -ggdb
 CXXFLAGS = $(CFLAGS) -fno-rtti -fno-exceptions
 LDFLAGS = -Wl,--script=LPC824.ld -nostartfiles
 
@@ -22,6 +23,9 @@ vpath %.cpp ../minimal
 upload: firmware.bin
 	./lpc21isp/lpc21isp -control -donotstart -bin $< $(TTY) 115200 0
 
+dump: firmware.elf
+	$(DUMP) -d $< > firmware.s
+
 firmware.elf: main.o gcc_startup_lpc82x.o system_LPC82x.o
 	$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^
 
@@ -29,7 +33,7 @@ firmware.elf: main.o gcc_startup_lpc82x.o system_LPC82x.o
 	$(CP) -O binary $< $@
 
 clean:
-	rm -f *.o *.elf
+	rm -f *.o *.elf *.bin *.s
 
 # these target names don't represent real files
-.PHONY: upload clean
+.PHONY: upload dump clean

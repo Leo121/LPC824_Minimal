@@ -1,6 +1,6 @@
 
-This is a minimal setup for writing projects for the NXP LPC82x series 
-of MCUs on Debian based Linux distributions (Debian, Ubuntu, LinuxMINT etc.)
+This is a minimal setup for writing projects for the NXP LPC82x (LPC824 & LPC822) 
+series of MCUs on Debian based Linux distributions (Debian, Ubuntu, LinuxMINT etc.)
 
 1. run 'bootstrap.sh', it will install the proper compiler and compile lpc21isp
 2. run 'make' to compile the project and upload the firmware to the chip
